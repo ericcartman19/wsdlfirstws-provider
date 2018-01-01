@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+		xmlns:tns="http://trainings.ws.bharath.com" elementFormDefault="unqualified"
+		targetNamespace="http://trainings.ws.bharath.com" version="1.0">
+		
+		<!-- definimos el tipo complejo "order" -->
+		<complexType name="order">
+			<sequence>
+				<element name="id" type="integer"/>
+				<element maxOccurs="unbounded" name="product" type="tns:product" />
+			</sequence>
+		</complexType>
+		
+		<complexType name="product">
+			<sequence>
+				<element minOccurs="0" name="id" type="string" />
+				<element minOccurs="0" name="description" type="string" />
+				<element minOccurs="0" name="quantity" type="integer" />
+			</sequence>
+		</complexType>
+		
+		<complexType name="getOrdersRequest">
+			<sequence>
+				<element minOccurs="0" name="customerId" type="integer" />
+			</sequence>
+		</complexType>
+		
+		<complexType name="getOrdersResponse">
+			<sequence>
+				<element minOccurs="0" maxOccurs="unbounded" name="order" type="tns:order"/>
+			</sequence>
+		</complexType>
+		
+		<complexType name="createOrdersRequest">
+			<sequence>
+				<element name="customeId" type="integer" />
+				<element name="order" type="tns:order" />
+			</sequence>
+		</complexType>
+		
+		<complexType name="createOrdersResponse">
+			<sequence>
+				<element name="result" type="boolean" />
+			</sequence>
+		</complexType>
+		
+		<element name="getOrdersRequest" type="tns:getOrdersRequest" />
+		<element name="getOrdersResponse" type="tns:getOrdersResponse" />
+		<element name="createOrdersRequest" type="tns:createOrdersRequest" />
+		<element name="createOrdersResponse" type="tns:createOrdersResponse" />
+		
+</schema>
